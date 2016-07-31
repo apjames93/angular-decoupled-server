@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 
 // (3) remove - var routes = require('./routes/index'); add next line
 var api = require('./api/index');
+var auth = require('./auth/index')
 
 
 // (4.1) remove  var users = require('./routes/users');
@@ -25,8 +26,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 //(4.3) app.use(express.static(path.join(__dirname, 'public')));
 //3.2
+
+app.use('/auth', auth);
+
 app.use('/api', api);
 // (4.4) app.use('/users', users);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
