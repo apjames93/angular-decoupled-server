@@ -25,4 +25,29 @@ router.post('/signup', function(req, res, next){
   });
 });
 
+router.post('/login', function(req, res, next){
+  queries.findUserByUserName(req.body.userName)
+  .then(function(user){
+    var plainTextPassword = req.body.password;
+    if(user && bcrypt.compareSync(plainTextPassword, user.password)){
+      jwt.sign(user, process.env.TOKEN_SECRET, {expiresIn: '1d'}, function(err, token){
+        console.log(token);
+        if(err){
+          res.json({
+            message: 'error creating token'
+          });
+        }else{
+          res.json({
+            token : token
+          });
+        }
+      });
+      }else{
+      res.status(401);
+      res.json({
+        message : 'unauthorized'
+      });
+    }
+  });
+});
 module.exports = router;

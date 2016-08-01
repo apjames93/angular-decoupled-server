@@ -4,10 +4,11 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var helpers = require('./auth/helpers')
 
 // (3) remove - var routes = require('./routes/index'); add next line
 var api = require('./api/index');
-var auth = require('./auth/index')
+var auth = require('./auth/index');
 
 
 // (4.1) remove  var users = require('./routes/users');
@@ -26,10 +27,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 //(4.3) app.use(express.static(path.join(__dirname, 'public')));
 //3.2
+app.use(helpers.authMiddleWare);
 
-app.use('/auth', auth);
+app.use('/auth',  auth);
 
-app.use('/api', api);
+app.use('/api', helpers.ensureauthenticated, api);
 // (4.4) app.use('/users', users);
 
 
