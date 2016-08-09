@@ -16,6 +16,7 @@ module.exports ={
   },
   authMiddleWare : function(req, res, next){
     var token = req.get('Authorization');
+    // console.log(token, 'token');
     if(token){
       token = token.substring(7);
       jwt.verify(token, process.env.TOKEN_SECRET, function(error, decoded){
@@ -31,12 +32,13 @@ module.exports ={
     }
   },
   ensureauthenticated : function(req, res, next){
+    // console.log(req.get('Authorization'));
     if(req.user){
       next();
     }else{
       res.json({
         message : "you cant come here buddy"
-      })
+      });
     }
   }
 };

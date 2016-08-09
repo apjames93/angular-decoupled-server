@@ -18,12 +18,27 @@ router.get('/:id', function(req, res, next){
   });
 });
 router.post('/newListItem', function(req, res, next){
-  queries.addListItem(req.body, req.params)
+  // console.log(req.query);
+  queries.addListItem(req.query.list, req.query.users_id)
   .then(function(data){
       res.json({message: 'list item added'});
   });
 });
-
+router.get('/:id/delete', function(req, res, next){
+  console.log(req.query.list_id);
+  queries.deleteItem(req.query.list_id)
+  .then(function(data){
+      res.json({list: data});
+  });
+});
+router.put('/:id/edit', function(req, res, next){
+  console.log(req.query.list_id);
+  console.log(req.query.editListItem);
+  queries.editItem(req.query.list_id, req.query.editListItem)
+  .then(function(data){
+      res.json({list: data});
+  });
+});
 
 
 module.exports = router;

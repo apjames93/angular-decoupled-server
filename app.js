@@ -31,7 +31,8 @@ app.use(helpers.authMiddleWare);
 
 app.use('/auth',  auth);
 
-app.use('/api', helpers.ensureauthenticated, api);
+// app.use('/api', helpers.ensureauthenticated, api);
+app.use('/api', api);
 // (4.4) app.use('/users', users);
 
 
