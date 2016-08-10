@@ -6,7 +6,7 @@ var queries = require('../queries/apiQueries');
 var auth = require('./helpers.js');
 var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
-
+//(SETTING UP AUTH 7)
 router.post('/signup', function(req, res, next){
   queries.findUserByUserName(req.query.userName)
   .then(function(user){

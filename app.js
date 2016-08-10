@@ -8,6 +8,7 @@ var helpers = require('./auth/helpers')
 
 // (3) remove - var routes = require('./routes/index'); add next line
 var api = require('./api/index');
+//  SETTING UP AUTH 5
 var auth = require('./auth/index');
 
 
@@ -28,7 +29,7 @@ app.use(cookieParser());
 //(4.3) app.use(express.static(path.join(__dirname, 'public')));
 //3.2
 app.use(helpers.authMiddleWare);
-
+//  SETTING UP AUTH 5
 app.use('/auth',  auth);
 
 // app.use('/api', helpers.ensureauthenticated, api);
