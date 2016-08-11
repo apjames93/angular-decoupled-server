@@ -32,9 +32,7 @@ app.use(helpers.authMiddleWare);
 //  SETTING UP AUTH 5
 app.use('/auth',  auth);
 
-// app.use('/api', helpers.ensureauthenticated, api);
-app.use('/api', api);
-// (4.4) app.use('/users', users);
+app.use('/api', helpers.ensureauthenticated, api);
 
 
 // catch 404 and forward to error handler
