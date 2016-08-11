@@ -19,7 +19,7 @@ module.exports ={
       return user.id;
     });
   },
-  //JWT
+  //(SETTING UP AUTH 9)
   authMiddleWare : function(req, res, next){
     //Authorization is part of the header that is being sent
     var token = req.get('Authorization');
@@ -40,6 +40,7 @@ module.exports ={
       next();
     }
   },
+  //(SETTING UP AUTH 10)
   //makes sure that the token is in the header
   ensureauthenticated : function(req, res, next){
     if(req.user){
