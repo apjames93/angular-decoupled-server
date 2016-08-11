@@ -4,7 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var helpers = require('./auth/helpers')
+var helpers = require('./auth/helpers');
+var cors = require('cors');
 
 // (3) remove - var routes = require('./routes/index'); add next line
 var api = require('./api/index');
@@ -28,6 +29,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 //(4.3) app.use(express.static(path.join(__dirname, 'public')));
 //3.2
+
+// cors npm package
+app.use(cors());
+
 app.use(helpers.authMiddleWare);
 //  SETTING UP AUTH 5
 app.use('/auth',  auth);
